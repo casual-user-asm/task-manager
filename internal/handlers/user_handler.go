@@ -118,9 +118,14 @@ func UserLogin(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Logged in successfull",
+		"token":   tokenString,
 	})
 }
 
+//	url -X POST http://localhost:8080/user/login      -H "Content-Type: application/json"      -d '{
+//		"email": "test@example.com",
+//		"password": "securepassword"
+//	  }'
 func UserLogout(c *gin.Context) {
 	// Clear JWT cookie
 	c.SetSameSite(http.SameSiteNoneMode)

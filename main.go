@@ -7,9 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Init() {
+func init() {
 	config.LoadEnv()
-	config.Connect()
+	config.ConnectDB()
 	config.SyncDB()
 }
 

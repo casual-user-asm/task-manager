@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"gorm.io/driver/postgres"
@@ -10,7 +11,7 @@ import (
 
 var DB *gorm.DB
 
-func Connect() {
+func ConnectDB() {
 	var err error
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
@@ -21,11 +22,11 @@ func Connect() {
 		os.Getenv("DB_PORT"),
 	)
 
-	DB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic("Failed to connect database")
+		log.Fatal("❌ Failed to connect to the database:", err)
 	}
-
+	log.Println("✅ Database connected successfully!")
 	// Use DB
 	_ = DB
 }
