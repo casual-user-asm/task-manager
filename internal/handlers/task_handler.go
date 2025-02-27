@@ -25,13 +25,11 @@ func CreateTask(c *gin.Context) {
 	// Obtain data from request
 	var body struct {
 		Title       string `json:"title" binding:"required"`
-		Description string `'json:"description" binding:"required"`
+		Description string `json:"description" binding:"required"`
 	}
 
-	if c.Bind(&body) != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Fields are empty",
-		})
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Fields are empty or invalid"})
 		return
 	}
 
@@ -104,7 +102,7 @@ func UpdateTasks(c *gin.Context) {
 	}
 
 	if body.Description != "" {
-		task.Title = body.Description
+		task.Description = body.Description
 	}
 
 	err = config.DB.Save(&task).Error
