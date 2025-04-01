@@ -25,6 +25,14 @@ A simple CRUD API using Gin with PostgreSQL and JWT authentication.
 
 ```
   POST /user/register
+  
+  Example fields for JSON:
+  
+  {
+    "username": "test",
+    "email": "test",
+    "password": "test",
+  }
 ```
 
 
@@ -32,6 +40,13 @@ A simple CRUD API using Gin with PostgreSQL and JWT authentication.
 
 ```
   POST /user/login
+
+  Example fields for JSON:
+  
+  {
+    "email": "test",
+    "password": "test",
+  }
 ```
 
 #### Log out and invalidate the JWT token.
@@ -59,6 +74,13 @@ A simple CRUD API using Gin with PostgreSQL and JWT authentication.
 #### Create a new task.
 ```
   POST /tasks/create
+
+  Example fields for JSON:
+  
+  {
+    "title": "test",
+    "description": "test",
+  }
 ```
 
 
@@ -66,6 +88,13 @@ A simple CRUD API using Gin with PostgreSQL and JWT authentication.
 
 ```
   PUT /tasks/update/:id
+
+  Example fields for JSON:
+  
+  {
+    "title": "test",
+    "description": "test",
+  }
 ```
 #### Delete a task by ID.
 ```
